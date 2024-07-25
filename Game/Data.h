@@ -3,16 +3,18 @@
 #define DATA_H
 
 // data.h - основная библеотека и хранилище тех переменных которые будут часто нужны. Либо их нужно изменить их параметры
+#include<stdio.h>
+#include<windows.h>
+#include <tchar.h>
 
 
-#include <iostream>
 int Error(int error_code) {
 	if (error_code == 1) {
-		std::cout << "Fatal Error code No. 1 - unknown symbol. Please, try again."; // фатальная ошибка. Код номер 1. Неверный символ
+		MessageBox(NULL, LPCWSTR("Hi"), LPCWSTR("Hi"), 0x00000000L); // фатальная ошибка. Код номер 1. Неверный символ
 		return 0x1;
 	} else if (error_code == 2){
-		std::cout << "Fatal Error code No. 2 - Unknown entry in menu. Please, try again.\n"; // фатальная ошибка. Код номер 2. Неверный выбор в меню
-		return 0x2;
+		MessageBox(NULL, LPCWSTR("Hi"), LPCWSTR("Hi"), 0x00000000L); // фатальная ошибка. Код номер 2. Неверный Выбор меню
+		return 0x1;
 	}
 	return 1;
 }
@@ -40,7 +42,23 @@ int money(int wallet, int hard) {
 }
 
 int health(int hp) {
-	return 100;
+	switch (hp) {
+	case 100:
+		std::cout << "You have " << hp << " health. You don't need a doctor.";
+			break;
+	case 75: 
+		std::cout << "You have " << hp << " health. You don't need a doctor.";
+		break;
+	case 50: 
+		std::cout << "You have " << hp << " health. You don't need a doctor.";
+		break;
+	case 25: 
+		std::cout << "You have " << hp << " health. You need a doctor.";
+		break;
+	case 0:
+		std::cout << "You have " << hp << " health. You're dead :(\nStart new game.";
+		return 0;
+	}
 }
 
 int cursor(int s);
