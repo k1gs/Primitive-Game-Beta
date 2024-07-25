@@ -6,34 +6,39 @@ using namespace std;
 const char NEW_LINE = '\n'; // Новая строка
 
 void game(int dif) { // Основная функция игры. На данный момент может лишь только отобразить кол-во денег.
-	if (dif == 1) {
-		cout << "you have " << money(1,1) << " money"; 
-	}
+	switch (dif) {
+		case 1: 
+			cout << "you have " << money(1, 1) << " money";
+			break;
+		case 2:
+			cout << "you have " << money(1, 2) << " money";
+			break;
+		case 3:
+			cout << "you have " << money(1, 3) << " money";
+			break;
+    }
 }
-
+	
 void settings(int x, int y) { // Заглушка вкладки настроек
 	cout << "Placeholder";
-	
 	x = y;
-	
 }
 void start() { // страница выбора сложности, не защищен от других цифр кроме 1, 2 и 3.
 	int difficulty;
 	cout << "select your difficulty:\n1 - easy\n2 - medium\n3 - hard\n";
 	cin >> difficulty;
-	switch (difficulty) {
-	case 1: 
+	if (difficulty == 1) {
 		cout << "you selected easy difficulty" << NEW_LINE;
 		game(1);
-		break;
-	case 2:
+	}else if(difficulty == 2) {
 		cout << "you selected medium difficulty" << NEW_LINE;
 		game(2);
-		break;
-	case 3:
+	}else if(difficulty == 3){
 		cout << "you selected hard difficulty" << NEW_LINE;
 		game(3);
-		break;
+	}
+	else {
+		Error(2);
 	}
 }
 int main() { // главный экран
@@ -52,7 +57,7 @@ int main() { // главный экран
 		Error(2);
 		main();
 	}
-	return 0x2;
+	return 0x3;
 }
 
 
